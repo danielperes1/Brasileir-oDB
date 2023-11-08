@@ -1,0 +1,145 @@
+Scripts para a criação do banco de dados e das tabelas:
+
+create database brasileiraodb;
+
+create table cartoes (
+partida_id integer,
+clube text,
+cartao text,
+atleta text,
+posicao text,
+minuto char
+);
+
+create table gols (
+patida_id integer,
+clube text,
+atleta text,
+minuto text,
+tipo_de_gol text
+);
+
+create table partidas (
+partida_id int primary key,
+rodada integer,
+data_jogo date,
+hora time,
+mandante char,
+visitante char,
+tecnico_mandante text,
+tecnico_visitante text,
+vencedor text,
+arena text,
+mandante_placar integer,
+visitante_placar integer
+
+) default charset = utf8;
+
+
+Respostas de cada pergunta, e também as queries SQL com as quais foi possível respondê-las.
+
+
+QUERY: SELECT vencedor, COUNT(*) AS total_vitorias
+FROM partidas
+GROUP BY vencedor
+ORDER BY total_vitorias DESC;
+
+Quantas partidas cada clube venceu?
+
+R: Palmeiras (160)
+Flamengo (159)
+Atletico-MG (143)
+Corinthians (131)
+Santos (128)
+Athletico-PR (123)
+Sao Paulo (120)
+Fluminense (116)
+Internacional (115)
+Gremio (115)
+Botafogo-RJ (77)
+Sport (72)
+Cruzeiro (65)
+Bahia (60)
+Chapecoense (59)
+Vasco (57)
+Fortaleza (57)
+Coritiba (52)
+Ceara (52)
+Goias (45)
+America-MG (45)
+Atletico-GO (42)
+Ponte Preta (38)
+Bragantino (38)
+Avai (33)
+Vitoria (32)
+Cuiaba (20)
+Figueirense (19)
+Juventude (14)
+Santa Cruz (8)
+CSA (8)
+Joinville (7)
+Parana (4)
+
+
+
+Quais times foram os maiores vencedores, e quais times ficaram com menos vitórias?
+
+R: Maiores vencedores: 
+
+Palmeiras (160)
+Flamengo (159)
+Atletico-MG (143)
+Corinthians (131)
+Santos (128)
+
+Menos vitorias: 
+
+Santa Cruz (8)
+CSA (8)
+Joinville (7)
+Parana (4)
+
+-----------------------------------------------------------------------------------------------
+
+Cartões vermelhos e amarelos.
+
+Quais times levaram o maior numero de cartões?
+
+R: Santos (762), Sao Paulo (749), Fluminense (747) e Palmeiras (741)
+
+
+Quais jogadores receberam o maior número de cartões?
+
+R: Samuel Xavier (62), Fred (56) e Lucas Rafael Araujo Lima (55)
+
+
+QUERY 1 : select clube, count(*) as cartoes_amarelos
+from cartoes
+group by clube
+order by cartoes_amarelos DESC;
+
+QUERY 2: select atleta, count(*) as vezes_que_tomou_cartao
+from cartoes
+group by atleta
+order by vezes_que_tomou_cartao DESC;
+
+-------------------------------------------------------------------------------------------
+
+Gols
+
+Quais times tiveram mais gols?
+
+R: Flamengo, Palmeiras, Atletico-MG, Santos e São Paulo.
+
+Quem foram os maiores artilheiros de todas as partidas registradas nos dados?
+
+R: R: Gabriel Barbosa, Diego Souza e Fred.
+
+QUERY : select atleta, count (*) as gols_feitos
+from gols
+group by atleta
+order by gols_feitos DESC;
+
+
+
+
