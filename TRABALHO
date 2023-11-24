@@ -131,6 +131,11 @@ Quais times tiveram mais gols?
 
 R: Flamengo, Palmeiras, Atletico-MG, Santos e São Paulo.
 
+select clube, count (*) as gols_feitos
+from gols
+group by clube
+order by gols_feitos DESC;
+
 Quem foram os maiores artilheiros de todas as partidas registradas nos dados?
 
 R: R: Gabriel Barbosa, Diego Souza e Fred.
